@@ -248,19 +248,19 @@
   <a class="m-p-other" target="_blank" href="http://blog.luckly-mjw.cn/tool-show/index.html">其他实用工具</a>
 
   <!--文件载入-->
-  <div class="m-p-temp-url">测试链接：https://github.com/Momo707577045/m3u8-downloader/tree/master/imgs</div>
-  <div class="m-p-intro">支持特定分支，特定 tags 下的文件夹或具体文件，解决 GitHub 只能下载整个项目的问题。直接拷贝当前页面链接至本页面，点击下载</div>
+  <div class="m-p-temp-url">Test Link：https://github.com/Momo707577045/m3u8-downloader/tree/master/imgs</div>
+  <div class="m-p-intro">Support specific branches，Folders or specific files under specific tags，Solve the problem that GitHub can only download the entire project.Directly copy the current page link to this page, click to download.</div>
   <section class="m-p-input-container">
-    <input type="text" v-model="url" :disable="downloading" :readonly="downloading" placeholder="请输入 GitHub 当前页面链接">
-    <div class="" v-if="!downloading" @click="getFileList" :class="{'disable':downloading}">解析下载</div>
+    <input type="text" v-model="url" :disable="downloading" :readonly="downloading" placeholder="Please input github link here">
+    <div class="" v-if="!downloading" @click="getFileList" :class="{'disable':downloading}">Download</div>
   </section>
 
   <template v-if="fileInfoList.length > 0">
     <div class="m-p-line"></div>
-    <div class="m-p-retry" v-if="errorNum && downloadIndex >= fileInfoList.length" @click="retryAll">重新下载错误文件</div>
-    <div class="m-p-force" v-if="finishNum" @click="forceDownload">强制下载现有文件</div>
-    <div class="m-p-tips">碎片总量：{{ fileInfoList.length }}，已下载：{{ finishNum }}，错误：{{ errorNum }}，进度：{{ (finishNum / fileInfoList.length * 100).toFixed(2) }}%</div>
-    <div class="m-p-tips">若某视频碎片下载发生错误，将标记为红色，可点击相应图标进行重试</div>
+    <div class="m-p-retry" v-if="errorNum && downloadIndex >= fileInfoList.length" @click="retryAll">Redownload the error file</div>
+    <div class="m-p-force" v-if="finishNum" @click="forceDownload">Force download of existing files</div>
+    <div class="m-p-tips">total fragmentation：{{ fileInfoList.length }}，downloaded：{{ finishNum }}，error：{{ errorNum }}，progress：{{ (finishNum / fileInfoList.length * 100).toFixed(2) }}%</div>
+    <div class="m-p-tips">If there is an error in downloading a video fragment, it will be marked in red, you can click the corresponding icon to try again.</div>
     <section class="m-p-segment">
       <div class="item" v-for="(item, index) in fileInfoList" :class="[item.status]" @click="retry(index)" :title="item.path">
         <div class="status"></div>
