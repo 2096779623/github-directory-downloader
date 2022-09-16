@@ -386,25 +386,25 @@ new Vue({
               console.log(this.projectInfo)
               callback && callback(branchList)
             },
-            fail: _ => this.alertError('链接不正确，请查看链接是否有效')
+            fail: _ => this.alertError('The link is incorrect, please check if the link is valid')
           })
         },
-        fail: _ => this.alertError('链接不正确，请查看链接是否有效')
+        fail: _ => this.alertError('The link is incorrect, please check if the link is valid')
       })
     },
 
     // 获取 git tree
     getFileList() {
       if (!this.url) {
-        alert('请输入链接')
+        alert('Please input link')
         return
       } else if (this.downloading) {
-        alert('资源下载中，请稍后')
+        alert('Downloading, please wait...')
         return
       }
 
       this.downloading = true
-      this.tips = 'git tree 文件下载中，请稍后'
+      this.tips = 'Downloading github tree files,please wait...'
       this.url = decodeURIComponent(this.url)
       const pathParams = this.url.replace('https://github.com/', '').trim().split('/')
       this.projectInfo.branchName = 'master'
@@ -432,7 +432,7 @@ new Vue({
               this.downloadFile()
             },
             fail: () => {
-              this.alertError('链接不正确，请查看链接是否有效')
+              this.alertError('The link is incorrect, please check if the link is valid')
             }
           })
         }
@@ -441,7 +441,7 @@ new Vue({
 
     // 下载分片
     downloadFile() {
-      this.tips = 'git 项目文件下载中，请稍后'
+      this.tips = 'The git project file is downloading, please wait'
       let download = () => {
         let index = this.downloadIndex
         this.downloadIndex++
@@ -523,7 +523,7 @@ new Vue({
 
     // 下载整合后的 git 文件
     downloadZip() {
-      this.tips = 'git 文件整合中，请留意浏览器下载'
+      this.tips = 'git file integration, please pay attention to the browser download'
       const zip = new JSZip()
       this.fileInfoList.forEach(item => item.status === 'finish' && zip.file(item.path, item.fileData))
       zip.generateAsync({ type: 'blob' }).then((content) => {
@@ -541,7 +541,7 @@ new Vue({
     alertError(tips) {
       alert(tips)
       this.downloading = false
-      this.tips = 'GitHub 特定文件夹或文件下载工具';
+      this.tips = 'GitHub specific folder or file download tool';
     },
 
     // 拷贝剪切板
